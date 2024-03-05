@@ -1,5 +1,7 @@
 package JavaHw;
 
+import java.util.ArrayList;
+
 public class PlayLotto {
 
 	public static void main(String[] args) {
@@ -12,8 +14,8 @@ public class PlayLotto {
 	}
 	public static String[] playLotto() {
 		
-		String[] num = new String[6];
-		for (int i = 0; i < 6; i++) {
+		String[] num = new String[7];
+		for (int i = 0; i < 7; i++) {
 			int randomnum = (int) (Math.random() * 49 + 1);
 			num[i] = String.format("%02d", randomnum);
 			for (int j = 0; j < i; j++) {// 檢查有無重覆{
@@ -28,5 +30,14 @@ public class PlayLotto {
 		
 		
 	}
+	public static ArrayList<String[]> playLottoList(String[] num) {
+		
+		ArrayList<String[]> lottoArrayList = new ArrayList<String[]>();
+		lottoArrayList.add(num);
+		return lottoArrayList;
+		
+		
+	}
+	
 	
 }
