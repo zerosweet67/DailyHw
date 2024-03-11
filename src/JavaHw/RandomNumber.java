@@ -2,7 +2,7 @@ package JavaHw;
 
 public class RandomNumber {
 	public static void main(String[] args) {
-
+// Random 物件
 		for (int i = 0; i < 20; i++) {
 			int score = (int) (Math.random() * 100) + 1;
 			System.out.println("分數 " + (i + 1) + ": " + score + " - " + classify(score));

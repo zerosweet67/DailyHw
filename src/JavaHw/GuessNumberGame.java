@@ -1,5 +1,4 @@
 package JavaHw;
-
 import java.util.Scanner;
 
 public class GuessNumberGame {
@@ -7,9 +6,10 @@ public class GuessNumberGame {
 
 		Scanner sc = new Scanner(System.in);
 		int num = (int) (Math.random() * 10000);
-		
-		//避免生成重複的數字
-		
+
+		// 擋下重複數字
+		// 避免生成重複的數字
+
 		int flag = 0;
 		while (flag == 0) {
 			int[] check = new int[10];
@@ -19,8 +19,8 @@ public class GuessNumberGame {
 			check[(num / 100) % 10] += 1;
 			check[(num / 10) % 10] += 1;
 			check[num % 10] += 1;
-			
-		//檢查 check 數組中是否有任何數字出現超過一次 , 若有 , 重新生成數字
+
+			// 檢查 check 數組中是否有任何數字出現超過一次 , 若有 , 重新生成數字
 			for (int i = 0; i < 10; i++) {
 				if (check[i] >= 2) {
 					num = (int) (Math.random() * 10000);
@@ -37,6 +37,7 @@ public class GuessNumberGame {
 		int idx = 0;
 		int times = 0;
 		while (input != num) {
+
 			System.out.print("請輸入4位數字 : ");
 			input = sc.nextInt();
 			int inputcopy = input;
@@ -46,6 +47,11 @@ public class GuessNumberGame {
 				times++;
 				continue;
 
+			}
+			
+			if(!checkNumber(input)) {
+                continue;
+				
 			}
 			int t = 0;
 			// 檢查輸入的4位數字
@@ -95,6 +101,20 @@ public class GuessNumberGame {
 			System.out.println("猜測次數: " + times);
 		}
 
+	}
+
+	public static boolean checkNumber(int input) {
+	    int b1 = input / 1000;
+	    int b2 = (input / 100) % 10;
+	    int b3 = (input / 10) % 10;
+	    int b4 = input % 10;
+
+	    if (b1 == b2 || b1 == b3 || b1 == b4 || b2 == b3 || b2 == b4 || b3 == b4) {
+	        System.out.println("請輸入不重複的數字");
+	        return false;
+	    }
+
+	    return true;
 	}
 
 }

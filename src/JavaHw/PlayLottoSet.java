@@ -1,9 +1,8 @@
 package JavaHw;
 
-import java.io.ObjectOutputStream.PutField;
+
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeSet;
 
 public class PlayLottoSet {
@@ -18,15 +17,16 @@ public class PlayLottoSet {
 	}
 
 	public static Map<Integer, Integer> playLottoHashMap(TreeSet<String> playLottoSet) {
+		
+		//Hashmap 
 		  HashMap<Integer, Integer> map = new HashMap<>();
-	        int[] order = {1}; // 使用陣列以便在 lambda 運算式中修改
+	        int[] order = {1}; 
 
 	        playLottoSet.forEach(lottoResult -> {
 	            map.put(order[0], Integer.parseInt(lottoResult));
 	            order[0]++;
 	        });
 
-	        // 若要按照順序輸出，可以透過 forEach 遍歷
 	        map.forEach((key, value) -> System.out.println("第" + key + "個大樂透: " + value));
 
 	        return map;

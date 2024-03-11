@@ -6,9 +6,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.TreeSet;
-
 
 public class PlayLottofile {
 
@@ -22,7 +24,7 @@ public class PlayLottofile {
 		System.out.println("大樂透組別: " + lottoResults);
 		System.out.println("已生成" + numberOfDraws + "筆大樂透結果，並輸出至 " + fileName);
 		renameAndMoveFile();
-		System.out.println("檔名已修改完成已生成" );
+		System.out.println("檔名已修改完成已生成");
 		/**
 		 * int numberOfLottoSets = 100; HashMap<Integer, TreeSet<String>> lottoMap =
 		 * playLottoMap(numberOfLottoSets);
@@ -65,33 +67,28 @@ public class PlayLottofile {
 		}
 	}
 
-	
-	private static final String Lotto_PATH = "C:/Java/WorkSpace/DailyHW/Lotto"; // window - C:/qrcodes	
+	private static final String Lotto_PATH = "C:/Java/WorkSpace/DailyHW/Lotto"; // window - C:/qrcodes
 	static {
 		Path dir = Paths.get(Lotto_PATH);
-        if (!Files.exists(dir)) {
-            try {
-                Files.createDirectories(dir);
-            } catch (IOException e) {
-                // Handle the exception according to your requirements
-                e.printStackTrace();
-            }
-        }
-        System.out.println("Lotto_PATH "+dir.toAbsolutePath().toString());
+		if (!Files.exists(dir)) {
+			try {
+				Files.createDirectories(dir);
+			} catch (IOException e) {
+				// Handle the exception according to your requirements
+				e.printStackTrace();
+			}
+		}
+		System.out.println("Lotto_PATH " + dir.toAbsolutePath().toString());
 	}
+
 	public static void renameAndMoveFile() throws IOException {
-		 Path fromFile = Paths.get("C:\\Java\\WorkSpace\\DailyHW\\Lotto.txt");
-	     Path toDirectory = Paths.get(Lotto_PATH);
-
-	        // 創建目標檔案的路徑，同時修改檔名
-	        Path toFile = toDirectory.resolve("Lotto_20230305.txt");
-
-	        // 複製檔案到目標資料夾
-	        Files.copy(fromFile, toFile);
-
-	        // 如果需要保留原檔案，可以使用 Files.move 來修改檔名
-	        // Files.move(toFile, toFile.resolveSibling("Lotto_20230305.txt"));
+		Path fromFile = Paths.get("C:\\Java\\WorkSpace\\DailyHW\\Lotto.txt");
+		Path toDirectory = Paths.get(Lotto_PATH);
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
+		Path toFile = toDirectory.resolve("Lotto_"+sdf.format(date)+".txt");
+		Files.copy(fromFile, toFile);
 
 	}
 }
